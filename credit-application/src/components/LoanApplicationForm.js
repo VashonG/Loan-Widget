@@ -3,11 +3,52 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/styles.css';  // Make sure the path is correct
 
+const [activeSlide, setActiveSlide] = useState(1);
+
 const LoanApplicationForm = () => {
   // State Management
   const [personalInfo, setPersonalInfo] = useState({ name: '', address: '', email: '' });
   const [loanAmount, setLoanAmount] = useState(1000);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+  
+  const handleSliderChange = (e) => {
+    setLoanAmount(e.target.value);
+  };
+  
+  const handleNextSlide = () => {
+    if (activeSlide < 4) {
+      setActiveSlide(prevSlide => prevSlide + 1);
+    }
+  };
+  
+  const [businessDuration, setBusinessDuration] = useState('');
+
+  const handleBusinessDurationChange = (duration) => {
+    setBusinessDuration(duration);
+    console.log(duration);
+  };
+  
+  
+  const [monthlyRevenue, setMonthlyRevenue] = useState('');
+
+  const handleMonthlyRevenueChange = (revenue) => {
+    setMonthlyRevenue(revenue);
+    console.log(revenue);
+  };
+  
+  
+  const [creditScore, setCreditScore] = useState('');
+
+  const handleCreditScoreChange = (score) => {
+    setCreditScore(score);
+    console.log(score);
+  };
+  
+  
 
   // Form Submission Handler
   const handleSubmit = async (e) => {

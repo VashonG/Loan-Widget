@@ -2,8 +2,8 @@
   "name": "@VashonG/loan-widget",
   "version": "1.0.0",
   "description": "A simple modal for brokers and consultants to be able to quickly qualify applicants in a seamlessly fun and interactive way.",
-  "main": "index.js",
-  ...
+  "main": "index.js"
+}
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@VashonG"
   }

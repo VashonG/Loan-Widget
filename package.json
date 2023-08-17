@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "A simple modal for brokers and consultants to be able to quickly qualify applicants in a seamlessly fun and interactive way.",
   "main": "index.js"
-}
+},
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@VashonG"
-  }
+  },
   "dependencies": {
     "axios": "^1.4.0",
     "bcrypt": "^5.1.1",
@@ -20,4 +20,3 @@
     "start:backend": "npm start --prefix credit-application/credit-backend",
     "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\""
   }
-}

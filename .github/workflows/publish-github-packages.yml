@@ -1,4 +1,4 @@
-name: @VashonG/loan-widget-package
+name: Node.js Package
 
 on:
   release:

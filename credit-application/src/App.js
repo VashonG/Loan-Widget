@@ -1,13 +1,14 @@
 import React from 'react';
-import LoanApplication from './LoanApplication';
+import LoanApplicationForm from './LoanApplicationForm';  // Corrected the import name here
 
 function App() {
   return (
     <div className="App">
       <h1>Loan Application Widget</h1>
-      <LoanApplication />
+      <LoanApplicationForm />
     </div>
   );
 }
 
 export default App;
+

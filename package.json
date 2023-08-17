@@ -8,8 +8,12 @@
     "helmet": "^7.0.0"
   },
   "scripts": {
+    "test": "jest",
     "start:frontend": "npm start --prefix credit-application",
     "start:backend": "npm start --prefix credit-application/credit-backend",
     "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\""
+  },
+  "devDependencies": {
+    "jest": "^29.6.2"
   }
 }

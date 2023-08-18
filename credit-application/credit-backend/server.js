@@ -15,15 +15,19 @@ app.get("/", (req, res) => {
 });
 
 // MongoDB connection
-const dbUrl = process.env.DATABASE_URL || 'mongodb://localhost:27017/creditAppDB';
+const dbUrl = process.env.DATABASE_URL || 'mongodb+srv://paygeon:popcorn@cluster0.kj3eo6m.mongodb.net/?retryWrites=true&w=majority';
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
+})
+.catch(err => {
+    console.error('Error connecting to MongoDB:', err.message);
 });
+
 mongoose.connection.on('connected', () => {
     console.log('Connected to MongoDB');
 });
+
 
 // Application schema
 const ApplicationSchema = new mongoose.Schema({

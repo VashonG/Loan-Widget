@@ -21,6 +21,6 @@
     "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\""
   },
   "devDependencies": {
-    "jest": "^29.6.2"
+    "jest": "^29.6.3"
   }
 }

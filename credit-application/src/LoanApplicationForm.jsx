@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import axios from 'axios';
-import '../styles/styles.css';  // Make sure the path is correct
+import React, { useState } from 'react';
+import './styles/styles.css'; // Make sure the path is correct
 
 const LoanApplicationForm = () => {
   // State Management

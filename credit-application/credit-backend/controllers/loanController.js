@@ -1,4 +1,4 @@
-const Loan = require('../models/Loan');  // Assuming your Loan model is in a models directory
+import Loan, { findById, findByIdAndUpdate, findByIdAndDelete, find } from '../models/Loan';  // Assuming your Loan model is in a models directory
 
 const loanController = {};
 
@@ -16,7 +16,7 @@ loanController.applyForLoan = async (req, res) => {
 // Check the status of a loan by its ID
 loanController.checkLoanStatus = async (req, res) => {
     try {
-        const loan = await Loan.findById(req.params.loanId);
+        const loan = await findById(req.params.loanId);
         if (!loan) {
             return res.status(404).json({ message: 'Loan not found' });
         }
@@ -29,7 +29,7 @@ loanController.checkLoanStatus = async (req, res) => {
 // Update loan details by its ID
 loanController.updateLoanDetails = async (req, res) => {
     try {
-        const updatedLoan = await Loan.findByIdAndUpdate(req.params.loanId, req.body, { new: true });
+        const updatedLoan = await findByIdAndUpdate(req.params.loanId, req.body, { new: true });
         if (!updatedLoan) {
             return res.status(404).json({ message: 'Loan not found' });
         }
@@ -42,7 +42,7 @@ loanController.updateLoanDetails = async (req, res) => {
 // Delete a loan by its ID
 loanController.deleteLoan = async (req, res) => {
     try {
-        const result = await Loan.findByIdAndDelete(req.params.loanId);
+        const result = await findByIdAndDelete(req.params.loanId);
         if (!result) {
             return res.status(404).json({ message: 'Loan not found' });
         }
@@ -55,11 +55,11 @@ loanController.deleteLoan = async (req, res) => {
 // Fetch all loans
 loanController.getAllLoans = async (req, res) => {
     try {
-        const loans = await Loan.find();
+        const loans = await find();
         res.json(loans);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching all loans', error });
     }
 };
 
-module.exports = loanController;
+export default loanController;

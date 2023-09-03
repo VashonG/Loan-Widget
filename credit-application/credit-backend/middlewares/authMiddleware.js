@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+import { verify } from 'jsonwebtoken';
 
 const authMiddleware = {};
 
@@ -10,7 +10,7 @@ authMiddleware.verifyToken = (req, res, next) => {
         return res.status(401).json({ message: 'No token provided' });
     }
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    verify(token, process.env.JWT_SECRET, (err, user) => {
         if (err) {
             return res.status(403).json({ message: 'Invalid token' });
         }
@@ -20,4 +20,4 @@ authMiddleware.verifyToken = (req, res, next) => {
     });
 };
 
-module.exports = authMiddleware;
+export default authMiddleware;

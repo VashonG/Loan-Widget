@@ -1,23 +1,23 @@
 require('dotenv').config();
-const cors = require('cors');
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const helmet = require('helmet');
-const bcrypt = require('bcrypt');
-const morgan = require('morgan');
-const axios = require('axios');
+import cors from 'cors';
+import express, { json } from 'express';
+import { json as _json } from 'body-parser';
+import { connect, connection, Schema, model } from 'mongoose';
+import helmet from 'helmet';
+import { genSaltSync, hashSync } from 'bcrypt';
+import morgan from 'morgan';
+import { post } from 'axios';
 
 const app = express();
 app.use(cors());
-app.use(bodyParser.json());
+app.use(_json());
 app.use(morgan('dev'));
 // Middleware
-app.use(express.json());
+app.use(json());
 app.use(helmet());
 
 app.post('/apply', (req, res) => {
-    axios.post('http://localhost:5000/apply', req.body)
+    post('http://localhost:5000/apply', req.body)
       .then(response => {
         res.send(response.data);
       })
@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
 
 // MongoDB connection
 const dbUrl = process.env.DATABASE_URL || 'mongodb+srv://paygeon:popcorn@cluster0.kj3eo6m.mongodb.net/?retryWrites=true&w=majority';
-mongoose.connect(dbUrl, {
+connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
@@ -41,13 +41,13 @@ mongoose.connect(dbUrl, {
     console.error('Error connecting to MongoDB:', err.message);
 });
 
-mongoose.connection.on('connected', () => {
+connection.on('connected', () => {
     console.log('Connected to MongoDB');
 });
 
 
 // Application schema
-const ApplicationSchema = new mongoose.Schema({
+const ApplicationSchema = new Schema({
     name: String,
     address: String,
     email: String,
@@ -56,7 +56,7 @@ const ApplicationSchema = new mongoose.Schema({
     status: String,
 });
 
-const Application = mongoose.model('Application', ApplicationSchema);
+const Application = model('Application', ApplicationSchema);
 
 // Simple underwriting logic
 const underwriteApplication = (application) => {
@@ -79,8 +79,8 @@ const underwriteApplication = (application) => {
 // Routes
 app.post('/apply', async (req, res) => {
     try {
-        const salt = bcrypt.genSaltSync(10);
-        const hashedPassword = bcrypt.hashSync(req.body.password, salt);
+        const salt = genSaltSync(10);
+        const hashedPassword = hashSync(req.body.password, salt);
 
         const application = new Application({
             ...req.body,

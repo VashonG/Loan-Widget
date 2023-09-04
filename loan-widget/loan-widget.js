@@ -1,3 +1,6 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 function loadLoanWidget() {
     const widgetContainer = document.createElement('div');
     widgetContainer.className = 'loan-widget-container';

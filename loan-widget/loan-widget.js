@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import LoanApplicationForm from './credit-application/src/LoanApplicationForm.jsx'; // Update the path
+
 
 function loadLoanWidget() {
     const widgetContainer = document.createElement('div');
@@ -16,3 +18,4 @@ function loadLoanWidget() {
     document.body.appendChild(embedButton);
   }
   
+  export { LoanApplicationForm };

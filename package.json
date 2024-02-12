@@ -11,7 +11,7 @@
     "bcrypt": "^5.1.1",
     "concurrently": "^8.2.2",
     "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
+    "dotenv": "^16.4.3",
     "helmet": "^7.1.0",
     "newrelic": "^11.9.0"
   },
